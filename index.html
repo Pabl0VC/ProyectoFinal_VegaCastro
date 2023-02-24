@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de compra de productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary p-0 navborder">
+        <div class="container-fluid bg-dark">
+          <a class="navbar-brand" href="#"><img src="/img/JotaEse Store.png" alt="logo" width="120px"></a>
+          <button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="/products.html">Productos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/admin.html">Admin</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <!-- Main -->
+    <div class="container text-center mt-4">
+      <!-- MODOS DARK - -->
+      <div class="modos">
+        <div class="dark">
+          <a id="botonDarkMode" href="#"><img src="/img/modo-oscuro.png" alt="Modo_Oscuro" width="40px"></a>
+        </div>
+        <div class="light">
+          <a id="botonLightMode" href="#"><img src="/img/modo-ligth.png" alt="Modo_Oscuro" width="40px"></a>
+        </div>
+      </div>
+        <!-- Seccion-->
+        <h1 class="cardText">Bienvenido</h1>
+        <div class="row mt-4">
+            <div class="col-sm-12 col-md-12 col-lg-6 mb-sm-4 mb-md-4">
+                <h3 class="cardText">Gafas desde $20.000 CLP</h3>
+                <img src="/img/gafas.png" alt="gafas" width="200px">
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 mb-sm-4 mb-md-4">
+                <h3 class="cardText">Gorras desde $10.000 CLP</h3>
+                <img src="/img/gorra.png" alt="gorra" width="200px">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-6 mb-sm-4 mb-md-4">
+                <h3 class="cardText">Zapatillas desde $45.000 CLP</h3>
+                <img src="/img/zapatillas.png" alt="zapatillas" width="200px">
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 mb-sm-4 mb-md-4">
+                <h3 class="cardText">Pulseras desde $8.000 CLP</h3>
+                <img src="/img/pulsera.png" alt="pulsera" width="200px">
+            </div>
+        </div>
+        <!-- Boton Catalogo -->
+        <div class="container mb-5 text-center">
+              <a href="/products.html">
+              <button id="verCatalogo" class="button-49" role="button" >Ver Catálogo</button>
+              </a>
+        </div>
+
+      <!-- Script Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- <script src="simulador.js"></script> -->
+    <script src="JS/object_array.js"></script>
+    <script src="JS/darkMode.js"></script>
+
+</body>
+</html>

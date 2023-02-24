@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+     <!-- Iconos-->
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary p-0 navborder navegador" >
+        <div class="container-fluid bg-dark navegador">
+          <a class="navbar-brand" href="index.html"><img src="/img/JotaEse Store.png" alt="logo" width="120px"></a>
+          <button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse navegador" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/index.html">Home</a>
+                </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="/products.html">Productos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/admin.html">Admin</a>
+              </li>
+            </ul>
+            <!-- Barra de busqueda -->
+            <ul class="navbar-nav mb-xs-3 mb-sm-3 m-lg-0">
+              <form class="d-flex">
+                <input id="buscador"class="form-control barraBuscador" placeholder="Busque por MODELO o MARCA" aria-label="Search">
+                <!-- <button id="btnBuscar" class="btn btn-outline-warning">Buscar</button> -->
+              </form> 
+            </ul>
+            <!-- Carrito -->
+              <ul style="list-style: none;"className="navbar-nav me-auto " class="mb-xs-3 mb-sm-3 mt-xs-3 mt-sm-3 m-lg-0 carritoCompras">  
+                <li className="nav-item ">
+                    <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito" class="btn btn-warning"><i class="fas fa-shopping-cart fa-1x"></i></a>
+                </li>
+            </ul>
+
+
+          </div>
+        </div>
+    </nav>
+<!---------------- MAIN ----------------------->
+    <div class="container text-center mt-4">
+        <!-- MODOS DARK - -->
+        <div class="modos">
+            <div class="dark">
+                <a id="botonDarkMode" href="#"><img src="/img/modo-oscuro.png" alt="Modo_Oscuro" width="40px"></a>
+            </div>
+            <div class="light">
+                <a id="botonLightMode" href="#"><img src="/img/modo-ligth.png" alt="Modo_Oscuro" width="40px"></a>
+            </div>
+        </div>
+    <!-- Titulo Pagina -->
+    <div class="tituloPagina cardText mb-5">
+        <h1>Productos</h1>
+    </div>
+    <!-- Preferencias Admin -->
+    <div class="container text-center">
+        <div class="row text-center m-auto">
+            <!-- SELECT ORDEN -->
+            <div class="col-xs-12 col-md-6 col-sm-12 col-lg-3 col-xl-3 m-auto mb-sm-3 ">
+                <select id="selectOrden" class="form-select form-select-sm m-md-2 m-lg-0" aria-label=".form-select-sm example">
+                    <option selected>Más destacado</option>
+                    <option value="1">Mayor precio</option>
+                    <option value="2">Menor precio</option>
+                    <option value="3">Masculino</option>
+                    <option value="4">Femenino</option>
+                    <option value="5">Unisex</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+        <!-------------------- CONTAINER CATALOGO LIBROS -------------------->
+        <div class="container text-center mb-5">
+            <div id="coincidencia"></div>
+            <div id="productos" class="row"></div>
+        </div>
+    
+<!---------------------------- MODALS --------------------------->
+    <!--Modal Agregar producto-->
+    <div class="modal fade" id="idModalAgregarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content colorCard cardText">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel">Agregar Producto</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modal-body">
+            <form>
+              <div class="mb-3 text-start">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="form-control border-warning" id="marcaInput" aria-describedby="marca" placeholder="Ej: Nike">
+              </div>
+              <div class="mb-3 text-start">
+                <label for="modelo" class="form-label">Modelo</label>
+                <input type="text" class="form-control border-warning" id="modeloInput" aria-describedby="modelo" placeholder="Ej: Total 90">
+              </div>
+              <div class="mb-3 text-start">
+                <label for="genero" class="form-label">Genero</label>
+                <input type="text" class="form-control border-warning" id="generoInput" aria-describedby="genero" placeholder="Hombre - Mujer - Unisex">
+              </div>
+              <!-- <div class="mb-3 text-start">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="text" class="form-control border-warning"id="precioInput" aria-describedby="precio" placeholder="Sin puntos">
+              </div> -->
+              <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control" aria-label="Amount" id="precioInput" ria-describedby="precio" placeholder="Sin puntos separadores">
+              </div>
+              <div class="mb-3 text-start">
+                <label for="articulo" class="form-label">Tipo de Articulo</label>
+                <input type="text" class="form-control border-warning" id="articuloInput" aria-describedby="articulo" placeholder="Ej: Zapatillas">
+              </div>
+              <div class="mb-3 text-start">
+                <label for="sku" class="form-label">SKU</label>
+                <input type="text" class="form-control border-warning" id="skuInput" aria-describedby="sku" placeholder="22004">
+              </div>
+            </form>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="text" id="guardarProductoBtn" class="btn btn-success" data-bs-dismiss="modal">Guardar Producto</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Modal Carrito-->
+    <div class="modal fade" id="idModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Carrito de Compras</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modal-bodyCarrito">
+          </div>
+          <div class="row ml-ato">
+            <p id="precioTotal"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" data-bs-dismiss="modal" class="btn btn-warning" id="botonFinalizarCompra">Finalizar Compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+      <!-- Script Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    
+    <!-- Script Simulador de compra -->
+    <!-- <script src="simulador.js"></script> -->
+    <script src="JS/object_array.js"></script>
+    <script src="JS/products.js"></script>
+    <script src="JS/darkMode.js"></script>
+
+</body>
+</html>
