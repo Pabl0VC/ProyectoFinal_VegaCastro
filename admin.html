@@ -115,7 +115,7 @@
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text">$</span>
-                <input type="text" class="form-control" aria-label="Amount" id="precioInput" ria-describedby="precio" placeholder="Sin puntos separadores">
+                <input type="text" class="form-control" aria-label="Amount" id="precioInput" aria-describedby="precio" placeholder="Sin puntos separadores">
               </div>
               <div class="mb-3 text-start">
                 <label for="articulo" class="form-label">Tipo de Articulo</label>
@@ -123,7 +123,7 @@
               </div>
               <div class="mb-3 text-start">
                 <label for="sku" class="form-label">SKU</label>
-                <input type="text" class="form-control border-warning" id="skuInput" aria-describedby="sku" placeholder="22004">
+                <input type="number" class="form-control border-warning" id="skuInput" aria-describedby="sku" placeholder="22004">
               </div>
             </form>
           </div>
@@ -136,27 +136,6 @@
       </div>
     </div>
 
-    <!--Modal Carrito-->
-    <div class="modal fade" id="idModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Carrito de Compras</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body" id="modal-bodyCarrito">
-          </div>
-          <div class="row ml-ato">
-            <p id="precioTotal"></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Finalizar Compra</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
 
       <!-- Script Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

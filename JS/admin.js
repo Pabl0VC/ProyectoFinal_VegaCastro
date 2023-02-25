@@ -10,8 +10,7 @@ let coincidencia = document.querySelector("#coincidencia")
 let selectOrden = document.getElementById("selectOrden")
 
 
-
-
+//------------- Login Admin ---------------
 function inicioSesion(){
     let credecial = prompt("Ingrese USER (admin)").toLowerCase()
     while (credecial != "admin"){
@@ -38,7 +37,7 @@ function inicioSesion(){
 inicioSesion()
 
 
-//------------- FUNCTIONS PROYECTO --------------
+//------------- Mostrar Catalogo --------------
 function mostrarCatalogo(array){
     productos.innerHTML = ""
     for(let producto of array){
@@ -53,39 +52,12 @@ function mostrarCatalogo(array){
                     <p class="cardText">${producto.articulo.toUpperCase()} ${producto.modelo.toUpperCase()}</p>
                     <p class="cardPrecio">$${producto.precio}</p>
                     <p class="cardSku">SKU ${producto.sku}</p>
-                    <button id="agregarBtn${producto.id}" class="button-48" role="button"><span class="text">Agregar al carrito</span></button>
                 </div>
         </div>`
         productos.appendChild(nuevoProducto)
-
-        let btnAgregar = document.querySelector(`#agregarBtn${producto.id}`)
-        btnAgregar.addEventListener("click", ()=>{
-            agregarAlCarrito(producto) //esta es la funcion que se ejecutará cuando se clickee en el boton "Agregar al carrito" 
-            
-        })
     }
 }
 
-
-//---------- Nuevo Array "productosEnCarrito" --------
-let productosEnCarrito
-if(localStorage.getItem("carrito")){//si ya existe en el storage el item con clave "carrito" lo capturamos con sus valores
-    productosEnCarrito = JSON.parse(localStorage.getItem("carrito"))
-}else{
-    productosEnCarrito = [] //Si no se ha agregado nada al carrito dejamos el Array "productosEnCarrito" vacio
-}
-
-
-
-//FUNCION AGREGAR AL CARRITO
-function agregarAlCarrito(producto){
-    console.log(`${producto.articulo} ${producto.marca} modelo ${producto.modelo} ha sido agregado al carrito de compras. Vale $${producto.precio}`) //Probando funcion
-    productosEnCarrito.push(producto)
-    console.log(productosEnCarrito) //probamos que el push está agregando los productos al array productosEnCarrito
-    localStorage.setItem("carrito", JSON.stringify (productosEnCarrito)) //guardando array en storage
-
-
-}
 
 
 //FUNCION INGRESO DE PRODUCTOS A CATALOGO
@@ -98,7 +70,6 @@ function cargarProducto(array){
     let inputArticulo = document.querySelector("#articuloInput")
     let inputSku = document.querySelector("#skuInput")
 
-    //*MOLDE: const producto1 = new Products(1,10033,"Gafas","Hombre","Ray Ban","Aviator Classic", 85000, "rayban_classic.jpg")
 
     //Molde para nuevo objeto
     const productoNuevo = new Products(array.length+1, inputSku.value, inputArticulo.value, inputGenero.value, inputMarca.value, inputModelo.value, inputPrecio.value,"producto_nuevo.jpg")

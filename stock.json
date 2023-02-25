@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "sku": 10033,
+        "articulo": "Gafas",
+        "genero": "Hombre",
+        "marca": "Ray Ban",
+        "modelo":"Aviator Classic",
+        "precio":85000,
+        "imagen": "rayban_classic.jpg"
+    },
+    {
+        "id": 2,
+        "sku": 10034,
+        "articulo": "Gafas",
+        "genero": "Unisex",
+        "marca": "Oakley",
+        "modelo":"Mega Wayfarer",
+        "precio":67000,
+        "imagen": "lentes_oakley.png"
+    },
+    {
+        "id": 3,
+        "sku": 10011,
+        "articulo": "Gorra",
+        "genero": "Mujer",
+        "marca": "Adidas",
+        "modelo":"Classic",
+        "precio":18000,
+        "imagen": "gorra_mujer.png"
+    },
+    {
+        "id": 4,
+        "sku": 10033,
+        "articulo": "Gorra",
+        "genero": "Hombre",
+        "marca": "Nike",
+        "modelo":"Tech Swoosh",
+        "precio":18000,
+        "imagen": "gorra_hombre_nike.png"
+    },
+    {
+        "id": 5,
+        "sku": 10013,
+        "articulo": "Gorra",
+        "genero": "Unisex",
+        "marca": "Oakley",
+        "modelo":"Cocaine & Gaviar",
+        "precio": 21000,
+        "imagen": "gorra_oakley_unisex.png"
+    },
+    {
+        "id": 6,
+        "sku": 10051,
+        "articulo": "Zapatillas",
+        "genero": "Mujer",
+        "marca": "Nike",
+        "modelo":"Run 5",
+        "precio": 55000,
+        "imagen": "zapatilla_nike_mujer.png"
+    },
+    {
+        "id": 7,
+        "sku": 10052,
+        "articulo": "Zapatillas",
+        "genero": "Hombre",
+        "marca": "Nike",
+        "modelo":"Total 90",
+        "precio": 52000,
+        "imagen":  "zapatilla_nike_hombre.png"
+    },
+    {
+        "id": 8,
+        "sku": 10053,
+        "articulo": "Zapatillas",
+        "genero": "Hombre",
+        "marca": "Adidas",
+        "modelo":"Messianico",
+        "precio":60000,
+        "imagen": "zapatillas_adidas_hombre.png"
+    },
+    {
+        "id": 9,
+        "sku": 10054,
+        "articulo": "Zapatillas",
+        "genero": "Unisex",
+        "marca": "Puma",
+        "modelo":"Nitro 2",
+        "precio":40000,
+        "imagen": "zapatilla_puma_unisex.jpg"
+    },
+    {
+        "id": 10,
+        "sku": 10055,
+        "articulo": "Zapatillas",
+        "genero": "Unisex",
+        "marca": "New Balance",
+        "modelo":"574",
+        "precio":35000,
+        "imagen": "new_balance_unisex.png"
+    },
+    {
+        "id": 11,
+        "sku": 10077,
+        "articulo": "Pulsera",
+        "genero": "Hombre",
+        "marca": "Ferouch",
+        "modelo":"Cuero Mamut",
+        "precio":12000,
+        "imagen": "pulsera_hombre.png"
+    },
+    {
+        "id": 12,
+        "sku": 10078,
+        "articulo": "Pulsera",
+        "genero": "Mujer",
+        "marca":"Marquis",
+        "modelo":"Hilo seda",
+        "precio":8500,
+        "imagen": "pulsera_mujer.png"
+    }
+]

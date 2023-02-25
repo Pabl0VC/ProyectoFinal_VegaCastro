@@ -15,7 +15,7 @@
     <!-- Nav -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary p-0 navborder navegador" >
         <div class="container-fluid bg-dark navegador">
-          <a class="navbar-brand" href="index.html"><img src="/img/JotaEse Store.png" alt="logo" width="120px"></a>
+          <a class="navbar-brand" href="index.html"><img src="./img/JotaEse Store.png" alt="logo" width="120px"></a>
           <button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -80,63 +80,23 @@
             </div>
         </div>
     </div>
-
-        <!-------------------- CONTAINER CATALOGO LIBROS -------------------->
+      <!--ANIMACION CARGA PRODUCTOS-->
+      <h3 id="loaderTexto" class="text-warning text-center cardText mt-5">Bienvenido a JotaEse Store</h3>
+      <div id="loader" class="d-flex justify-content-center">
+        <div class="spinner-grow text-warning" role="status">
+          <span class="visually-hidden"></span>
+        </div>
+      </div>
+      
+        <!-------------------- CONTAINER CATALOGO PRODUCTOS -------------------->
         <div class="container text-center mb-5">
             <div id="coincidencia"></div>
             <div id="productos" class="row"></div>
         </div>
+        
+
     
 <!---------------------------- MODALS --------------------------->
-    <!--Modal Agregar producto-->
-    <div class="modal fade" id="idModalAgregarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content colorCard cardText">
-          <div class="modal-header">
-            <h4 class="modal-title" id="exampleModalLabel">Agregar Producto</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body" id="modal-body">
-            <form>
-              <div class="mb-3 text-start">
-                <label for="marca" class="form-label">Marca</label>
-                <input type="text" class="form-control border-warning" id="marcaInput" aria-describedby="marca" placeholder="Ej: Nike">
-              </div>
-              <div class="mb-3 text-start">
-                <label for="modelo" class="form-label">Modelo</label>
-                <input type="text" class="form-control border-warning" id="modeloInput" aria-describedby="modelo" placeholder="Ej: Total 90">
-              </div>
-              <div class="mb-3 text-start">
-                <label for="genero" class="form-label">Genero</label>
-                <input type="text" class="form-control border-warning" id="generoInput" aria-describedby="genero" placeholder="Hombre - Mujer - Unisex">
-              </div>
-              <!-- <div class="mb-3 text-start">
-                <label for="precio" class="form-label">Precio</label>
-                <input type="text" class="form-control border-warning"id="precioInput" aria-describedby="precio" placeholder="Sin puntos">
-              </div> -->
-              <div class="input-group mb-3">
-                <span class="input-group-text">$</span>
-                <input type="text" class="form-control" aria-label="Amount" id="precioInput" ria-describedby="precio" placeholder="Sin puntos separadores">
-              </div>
-              <div class="mb-3 text-start">
-                <label for="articulo" class="form-label">Tipo de Articulo</label>
-                <input type="text" class="form-control border-warning" id="articuloInput" aria-describedby="articulo" placeholder="Ej: Zapatillas">
-              </div>
-              <div class="mb-3 text-start">
-                <label for="sku" class="form-label">SKU</label>
-                <input type="text" class="form-control border-warning" id="skuInput" aria-describedby="sku" placeholder="22004">
-              </div>
-            </form>
-          </div>
-          
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="text" id="guardarProductoBtn" class="btn btn-success" data-bs-dismiss="modal">Guardar Producto</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!--Modal Carrito-->
     <div class="modal fade" id="idModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -161,6 +121,8 @@
 
       <!-- Script Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!--Script Sweet Alert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <!-- Script Simulador de compra -->
     <!-- <script src="simulador.js"></script> -->
