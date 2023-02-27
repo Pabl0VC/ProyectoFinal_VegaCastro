@@ -35,7 +35,6 @@
             <ul class="navbar-nav mb-xs-3 mb-sm-3 m-lg-0">
               <form class="d-flex">
                 <input id="buscador"class="form-control barraBuscador" placeholder="Busque por MODELO o MARCA" aria-label="Search">
-                <!-- <button id="btnBuscar" class="btn btn-outline-warning">Buscar</button> -->
               </form> 
             </ul>
             <!-- Carrito -->
@@ -44,8 +43,6 @@
                     <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito" class="btn btn-warning"><i class="fas fa-shopping-cart fa-1x"></i></a>
                 </li>
             </ul>
-
-
           </div>
         </div>
     </nav>
@@ -100,14 +97,14 @@
     <!--Modal Carrito-->
     <div class="modal fade" id="idModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content colorCard cardText">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Carrito de Compras</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="modal-bodyCarrito">
           </div>
-          <div class="row ml-ato">
+          <div class="row ml-auto ">
             <p id="precioTotal"></p>
           </div>
           <div class="modal-footer">

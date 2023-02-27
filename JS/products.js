@@ -13,13 +13,11 @@ let cargando = document.querySelector("#loader")
 let botonCarrito = document.querySelector("#botonCarrito")
 let modalBodyCarrito = document.querySelector("#modal-bodyCarrito")
 let botonFinalizarCompra = document.querySelector("#botonFinalizarCompra")
-let precioTotal = document.getElementById("precioTotal")
-let fecha = document.getElementById("fecha")
+let precioTotal = document.querySelector("#precioTotal")
 
 
 
-
-//Animacion Loader
+//Animacion Carga de productos
 setTimeout(()=>{
     cargaTexto.innerHTML = ""
     cargando.remove()
@@ -50,7 +48,7 @@ function mostrarCatalogo(array){
         //Boton Agregar al Carrito
         let btnAgregar = document.querySelector(`#agregarBtn${producto.id}`)
         btnAgregar.addEventListener("click", ()=>{
-            agregarAlCarrito(producto) //esta es la funcion que se ejecutará cuando se clickee en el boton "Agregar al carrito" 
+            agregarAlCarrito(producto)
             
         })
     }
@@ -98,13 +96,11 @@ function agregarAlCarrito(producto){
             imageHeight: 200
         })
     }else{
-        console.log(`El producto ${productoAgregado.articulo} ${productoAgregado.modelo} ya existe en el carrito`)
         Swal.fire({
             title: `Producto ya existente`,
-            text: `El producto ${productoAgregado.articulo} ${productoAgregado.modelo} ya existe en el carrito`,
+            text: `El producto "${productoAgregado.articulo} ${productoAgregado.modelo}" ya existe en el carrito`,
             icon: "info",
             timer: 3000,
-            // confirmButton: false
         })
     }
 }
@@ -117,19 +113,23 @@ function cargarProductosCarrito(array){
     array.forEach((productoEnCarrito) => {
 
         modalBodyCarrito.innerHTML += `
-        <div class="card border-primary mb-3" id ="productoCarrito${productoEnCarrito.id}" style="max-width: 540px;">
-                 <img class="card-img-top" height="300px" src="img/productos/${productoEnCarrito.imagen}" alt="">
-                 <div class="card-body">
-                        <h4 class="card-title">${productoEnCarrito.articulo}${productoEnCarrito.marca}${productoEnCarrito.modelo}</h4>
-                    
-                         <p class="card-text">$${productoEnCarrito.precio}</p>
-                         <p class="card-text">Total de unidades: ${productoEnCarrito.cantidad}</p>
-                         <p class="card-text">SubTotal: ${productoEnCarrito.precio * productoEnCarrito.cantidad}</p>
-                         <button class= "btn btn-success" id="botonSumarUnidad${productoEnCarrito.id}"><i class=""></i>+1</button>
-                         <button class= "btn btn-danger" id="botonEliminarUnidad${productoEnCarrito.id}"><i class=""></i>-1</button>
-                         <button class= "btn btn-danger" id="botonEliminar${productoEnCarrito.id}"><i class="fas fa-trash-alt"></i></button>
-                 </div>    
-            </div>
+      <div class="card mb-3 cardText bg-light border border-warning rounded" style="max-width: 540px;" id ="productoCarrito${productoEnCarrito.id}">
+      <div class="row g-0">
+        <div class="col-md-4 border-end border-warning rounded">
+          <img src="img/productos/${productoEnCarrito.imagen}" class="img-fluid rounded-start h-100" alt="Productos Carrito">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">${productoEnCarrito.articulo} ${productoEnCarrito.marca} ${productoEnCarrito.modelo}</h5>
+            <p class="card-text">$${productoEnCarrito.precio}</p>
+            <p class="card-text"><small class="text-muted">Unidades: ${productoEnCarrito.cantidad}</small></p>
+            <button class= "btn btn-outline-success btn-sm"" id="botonSumarUnidad${productoEnCarrito.id}"><i class=""></i>+1</button>
+            <button class= "btn btn-outline-secondary btn-sm"" id="botonEliminarUnidad${productoEnCarrito.id}"><i class=""></i>-1</button>
+            <button class= "btn btn-outline-danger btn-sm"" id="botonEliminar${productoEnCarrito.id}"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
         `
     })
 
@@ -210,40 +210,52 @@ function calcularTotal(array){
 
     return total
 }
-function finalizarCompra(){
-    Swal.fire({
-        title: 'Está seguro de realizar la compra',
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, seguro',
-        cancelButtonText: 'No, no quiero',
-        confirmButtonColor: 'green',
-        cancelButtonColor: 'red',
-    }).then((result)=>{
-        if(result.isConfirmed){
-            let finalizarTotal = calcularTotal(productosEnCarrito)
-            Swal.fire({
-                title: 'Compra realizada',
-                icon: 'success',
-                confirmButtonColor: 'green',
-                // text: `Muchas gracias por su compra ha adquirido nuestros productos el día ${fechaMostrar} a las ${fechaHoy.toLocaleString(DateTime.TIME_SIMPLE)}. El total es de ${finalizarTotal} `,
-                })
-                //resetear carrito
-                productosEnCarrito = []
-                //removemos storage
-                localStorage.removeItem("carrito")
-        }else{
-            Swal.fire({
-                title: 'Compra no realizada',
-                icon: 'info',
-                text: `La compra no ha sido realizada! ATENCIÓN sus productos siguen en el carrito`,
-                confirmButtonColor: 'green',
-                timer:3500
-            })
-        }
-    }
 
-    )
+
+
+function finalizarCompra(){
+    let finalizarTotal = calcularTotal(productosEnCarrito)
+    if(finalizarTotal == 0){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No tienes productos en el carrito!',
+        })
+    }
+    else{
+        Swal.fire({
+            title: `Está seguro de realizar la compra por <strong>$${finalizarTotal}</strong> `,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, seguro',
+            cancelButtonText: 'No, no quiero',
+            confirmButtonColor: 'green',
+            cancelButtonColor: 'red'
+        })
+        .then((result)=>{
+            if(result.isConfirmed){
+                Swal.fire({
+                    title: 'Compra realizada',
+                    text:'Gracias por visitarnos',
+                    icon: 'success',
+                    confirmButtonColor: 'green',
+                    })
+                    //resetear carrito
+                    productosEnCarrito = []
+                    //removemos storage
+                    localStorage.removeItem("carrito")
+            }else{
+                Swal.fire({
+                    title: 'Compra no realizada',
+                    icon: 'error',
+                    text: `La compra no ha sido realizada! ATENCIÓN sus productos siguen en el carrito`,
+                    confirmButtonColor: 'green',
+                    
+                })
+            }
+        }
+        )
+    }
 }
 
 
@@ -304,7 +316,7 @@ function buscarInfo(buscado, array){
 
 
 
-//FUNCIONES DEFILTRADO (SELECT)
+//FUNCIONES DE FILTRADO (SELECT)
 
 //Orden Menor precio
 function ordenarMenorMayor(array){
@@ -389,5 +401,6 @@ selectOrden.addEventListener("change", ()=>{
 botonCarrito.addEventListener("click", ()=>{
     cargarProductosCarrito(productosEnCarrito)
 })
+
 botonFinalizarCompra.addEventListener("click", ()=>{
     finalizarCompra()})
