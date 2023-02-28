@@ -46,7 +46,7 @@ function login() {
     }
     })
 }
-login()
+// login()
 
 
 //------------- Mostrar Catalogo --------------
@@ -62,7 +62,7 @@ function mostrarCatalogo(array){
                     <h3 class="card-title cardText">${producto.marca.toUpperCase()}</h3>
                     <p class="cardText">${producto.genero.toUpperCase()} </p>
                     <p class="cardText">${producto.articulo.toUpperCase()} ${producto.modelo.toUpperCase()}</p>
-                    <p class="cardPrecio">$${producto.precio}</p>
+                    <p class="cardPrecio">${producto.precio.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}</p>
                     <p class="cardSku">SKU ${producto.sku}</p>
                 </div>
         </div>`
@@ -82,13 +82,14 @@ function cargarProducto(array){
     let inputSku = document.querySelector("#skuInput")
 
     //Molde para nuevo objeto
-    const productoNuevo = new Products(array.length+1, inputSku.value, inputArticulo.value, inputGenero.value, inputMarca.value, inputModelo.value, inputPrecio.value,"producto_nuevo.jpg")
+    const productoNuevo = new Products(array.length+1, inputSku.value, inputArticulo.value, inputGenero.value, inputMarca.value, inputModelo.value, parseInt(inputPrecio.value), "producto_nuevo.jpg")
 
     //Se suma al array stock
     array.push(productoNuevo)
 
     //guardar en localStorage
     localStorage.setItem("stock", JSON.stringify(array))
+
     mostrarCatalogo(array)
 
     //resetear inputs 
@@ -98,6 +99,13 @@ function cargarProducto(array){
     inputPrecio.value = ""
     inputArticulo.value = ""
     inputSku.value = ""
+    
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Producto Agregado',
+        text: 'Producto Agregado Exitosamente al Catalogo!'
+      })
 }
 
 

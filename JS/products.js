@@ -35,7 +35,7 @@ function mostrarCatalogo(array){
                     <h3 class="card-title cardText">${producto.marca.toUpperCase()}</h3>
                     <p class="cardText">${producto.genero.toUpperCase()} </p>
                     <p class="cardText">${producto.articulo.toUpperCase()} ${producto.modelo.toUpperCase()}</p>
-                    <p class="cardPrecio">$${producto.precio}</p>
+                    <p class="cardPrecio">${producto.precio.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}</p>
                     <p class="cardSku">SKU ${producto.sku}</p>
                     <button id="agregarBtn${producto.id}" class="button-48" role="button"><span class="text">Agregar al carrito</span></button>
                 </div>
@@ -116,7 +116,7 @@ function cargarProductosCarrito(array){
         <div class="col-md-8">
             <div class="card-body">
             <h5 class="card-title">${productoEnCarrito.articulo} ${productoEnCarrito.marca} ${productoEnCarrito.modelo}</h5>
-            <p class="card-text">$${productoEnCarrito.precio}</p>
+            <p class="card-text">${productoEnCarrito.precio.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}</p>
             <p class="card-text"><small class="text-muted">Unidades: ${productoEnCarrito.cantidad}</small></p>
             <button class= "btn btn-outline-success btn-sm"" id="botonSumarUnidad${productoEnCarrito.id}"><i class=""></i>+1</button>
             <button class= "btn btn-outline-secondary btn-sm"" id="botonEliminarUnidad${productoEnCarrito.id}"><i class=""></i>-1</button>
@@ -190,7 +190,7 @@ function cargarProductosCarrito(array){
 function calcularTotal(array){
     let total = array.reduce((acc, productoCarrito)=> acc + (productoCarrito.precio * productoCarrito.cantidad) ,0)
     total == 0 ? precioTotal.innerHTML = `No hay productos en el carrito` :
-    precioTotal.innerHTML = `El total es <strong>$${total}</strong>`
+    precioTotal.innerHTML = `<strong>Total ${total.toLocaleString("es-CL", { style: "currency", currency: "CLP" })} CLP</strong>`
     return total
 }
 
@@ -207,7 +207,7 @@ function finalizarCompra(){
     }
     else{
         Swal.fire({
-            title: `Está seguro de realizar la compra por <strong>$${finalizarTotal}</strong> `,
+            title: `Está seguro de realizar la compra por <strong>${finalizarTotal.toLocaleString("es-CL", { style: "currency", currency: "CLP" })} CLP</strong> `,
             icon: 'info',
             showCancelButton: true,
             confirmButtonText: 'Sí, seguro',
