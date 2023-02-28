@@ -1,5 +1,3 @@
-//PROYECTO:
-
 //-------------- Capturas nodos DOM ------------
 let productos = document.querySelector("#productos")
 let guardarProductoBtn = document.querySelector("#guardarProductoBtn")
@@ -11,30 +9,44 @@ let selectOrden = document.getElementById("selectOrden")
 
 
 //------------- Login Admin ---------------
-function inicioSesion(){
-    let credecial = prompt("Ingrese USER (admin)").toLowerCase()
-    while (credecial != "admin"){
-        credecial = prompt("User incorrecto. Ingrese las credenciales correctamente")
-    }
-    if(credecial == "admin"){
-        alert(`${credecial} CORRECTO`)
-    }
-    else{
-        productos.innerHTML = ""
-    }
+// Usuario: admin
+// Contraseña: 12345
 
-    let password = prompt("Ingrese PASSWORD (12345)").toLowerCase()
-    while (password != "12345"){
-        password = prompt("Contraseña inválida. Intentelo de nuevamente")
+function login() {
+    var user;
+    var password;
+    //SweetAlert
+    Swal.fire({
+    title: 'Inicio de sesión',
+    html:
+        '<input id="swal-input1" class="swal2-input" placeholder="Nombre de usuario">' +
+        '<input id="swal-input2" class="swal2-input" type="password" placeholder="Contraseña">',
+    focusConfirm: false,
+    preConfirm: () => {
+        user = Swal.getPopup().querySelector('#swal-input1').value
+        password = Swal.getPopup().querySelector('#swal-input2').value
     }
-    if(password == "admin"){
-        alert(`Bienvenido ${credecial}`)
+    }).then((result) => {
+    if (user === 'admin' && password === '12345') {
+        Swal.fire({
+        icon: 'success',
+        title: 'Inicio de sesión exitoso',
+        showConfirmButton: false,
+        timer: 1500
+        })
+    } else {
+        Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Nombre de usuario o contraseña incorrectos',
+        confirmButtonText: 'OK'
+        }).then((result) => {
+        login();
+        })
     }
-    else{
-        productos.innerHTML = ""
-    }
+    })
 }
-inicioSesion()
+login()
 
 
 //------------- Mostrar Catalogo --------------
@@ -59,7 +71,6 @@ function mostrarCatalogo(array){
 }
 
 
-
 //FUNCION INGRESO DE PRODUCTOS A CATALOGO
 function cargarProducto(array){
     
@@ -70,14 +81,13 @@ function cargarProducto(array){
     let inputArticulo = document.querySelector("#articuloInput")
     let inputSku = document.querySelector("#skuInput")
 
-
     //Molde para nuevo objeto
     const productoNuevo = new Products(array.length+1, inputSku.value, inputArticulo.value, inputGenero.value, inputMarca.value, inputModelo.value, inputPrecio.value,"producto_nuevo.jpg")
-    console.log(productoNuevo)
+
     //Se suma al array stock
     array.push(productoNuevo)
-    console.log(array)
-    //Se guarda en el localStorage
+
+    //guardar en localStorage
     localStorage.setItem("stock", JSON.stringify(array))
     mostrarCatalogo(array)
 
@@ -94,13 +104,12 @@ function cargarProducto(array){
 
 //FUNCION DE BUSQUEDA
 function buscarInfo(buscado, array){
-    //Con el metodo .includes() podemos realizar busquedas con coindicencias parciales.
     let busquedaArray = array.filter(
         (producto) => producto.marca.toLowerCase().includes(buscado.toLowerCase()) || producto.modelo.toLowerCase().includes(buscado.toLowerCase())) 
 
     //condicional sino encuentra ninguna coincidencia quiere decir que el array será devuelto vacio, por lo tanto su length será 0:
     if(busquedaArray.length == 0){
-        coincidencia.innerHTML = `<div class="alert alert-danger m-5" role="alert">No existe el producto ${buscado.toUpperCase()}</div>` //añadimos este mensaje en el html
+        coincidencia.innerHTML = `<div class="alert alert-danger m-5" role="alert">No existe el producto ${buscado.toUpperCase()}</div>`
         mostrarCatalogo(busquedaArray)
     }else{
         coincidencia.innerHTML = ""
@@ -110,20 +119,17 @@ function buscarInfo(buscado, array){
 
 
 
-//FUNCIONES DEFILTRADO (SELECT)
+//Filtrado de productos(select)
 
 //Orden Menor precio
 function ordenarMenorMayor(array){
-    //copiamos array original // concat
     const menorMayor = [].concat(array)
-    //ordena de menor a mayor
     menorMayor.sort((a,b) => a.precio - b.precio)
     mostrarCatalogo(menorMayor)
 }
 
 //Orden Mayor precio
 function ordenarMayorMenor(arr){
-//ordenar de mayor a menor
 const mayorMenor = [].concat(arr)
 mayorMenor.sort((param1, param2)=>{
     return param2.precio - param1.precio
@@ -189,7 +195,7 @@ buscador.addEventListener("input", ()=>{
 
 //Select (filtrado) 
 selectOrden.addEventListener("change", ()=>{
-    console.log(selectOrden.value) //confirmamos si está enlazado el select del html y el evento "change"
+    console.log(selectOrden.value)
 
     if(selectOrden.value == 1){ 
         ordenarMayorMenor(stock)
@@ -202,7 +208,6 @@ selectOrden.addEventListener("change", ()=>{
     }else if(selectOrden.value == 5){
         catalogoUnisex(stock)
     }else{
-        mostrarCatalogo(stock) //si no se selecciona ningun select, solo se ejecutará la funcion mostrarCatalogo() 
+        mostrarCatalogo(stock) 
     }
 })
-

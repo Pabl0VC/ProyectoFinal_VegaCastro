@@ -1,10 +1,7 @@
-//PROYECTO:
+//Proyecto Tienda Virtual
 
 //-------------- Capturas nodos DOM ------------
 let productos = document.querySelector("#productos")
-let guardarProductoBtn = document.querySelector("#guardarProductoBtn")
-let verCatalogoBtn = document.querySelector("#verCatalogo")
-let ocultarCatalogoBtn = document.querySelector("#ocultarCatalogo")
 let buscador = document.querySelector("#buscador") 
 let coincidencia = document.querySelector("#coincidencia")
 let selectOrden = document.querySelector("#selectOrden")
@@ -79,7 +76,6 @@ function agregarAlCarrito(producto){
     let productoAgregado = productosEnCarrito.find((elem)=> elem.id == producto.id)
     
     if(productoAgregado == undefined){
-        console.log(`El producto ${producto.modelo} marca ${producto.marca} ha sido agregado. Vale ${producto.precio}`)
         productosEnCarrito.push(producto)
         console.log(productosEnCarrito)
         localStorage.setItem("carrito", JSON.stringify(productosEnCarrito))
@@ -111,63 +107,55 @@ function agregarAlCarrito(producto){
 function cargarProductosCarrito(array){
     modalBodyCarrito.innerHTML = ""
     array.forEach((productoEnCarrito) => {
-
         modalBodyCarrito.innerHTML += `
-      <div class="card mb-3 cardText bg-light border border-warning rounded" style="max-width: 540px;" id ="productoCarrito${productoEnCarrito.id}">
-      <div class="row g-0">
+        <div class="card mb-3 cardText bg-light border border-warning rounded" style="max-width: 540px;" id ="productoCarrito${productoEnCarrito.id}">
+        <div class="row g-0">
         <div class="col-md-4 border-end border-warning rounded">
-          <img src="img/productos/${productoEnCarrito.imagen}" class="img-fluid rounded-start h-100" alt="Productos Carrito">
+            <img src="img/productos/${productoEnCarrito.imagen}" class="img-fluid rounded-start h-100" alt="Productos Carrito">
         </div>
         <div class="col-md-8">
-          <div class="card-body">
+            <div class="card-body">
             <h5 class="card-title">${productoEnCarrito.articulo} ${productoEnCarrito.marca} ${productoEnCarrito.modelo}</h5>
             <p class="card-text">$${productoEnCarrito.precio}</p>
             <p class="card-text"><small class="text-muted">Unidades: ${productoEnCarrito.cantidad}</small></p>
             <button class= "btn btn-outline-success btn-sm"" id="botonSumarUnidad${productoEnCarrito.id}"><i class=""></i>+1</button>
             <button class= "btn btn-outline-secondary btn-sm"" id="botonEliminarUnidad${productoEnCarrito.id}"><i class=""></i>-1</button>
             <button class= "btn btn-outline-danger btn-sm"" id="botonEliminar${productoEnCarrito.id}"><i class="fas fa-trash-alt"></i></button>
-          </div>
+            </div>
         </div>
-      </div>
+        </div>
     </div>
         `
     })
-
-
-
-
+    //funcionalidades botones carrito
     array.forEach((productoEnCarrito)=> {
-        //FOR EACH PARA AGREGARLE FUNCTIONS A LOS ELEMENTOS DE LA CARDS DEL CARRITO
-        //eliminar todo el producto
+        //Eliminar producto del carrito
         document.getElementById(`botonEliminar${productoEnCarrito.id}`).addEventListener("click", ()=>{
-            //elimnar del DOM
+            //eliminar del DOM
             let cardProducto = document.getElementById(`productoCarrito${productoEnCarrito.id}`)
             cardProducto.remove()
+
             //eliminar del array de compras
-            
-            //hago un find para buscar en el array el objeto a eliminar
             let productoEliminar = array.find((producto)=>producto.id == productoEnCarrito.id)
             console.log(productoEliminar)
-            //indexOf para saber el indice en el array
             let posicion = array.indexOf(productoEliminar)
-            console.log(posicion)
             array.splice(posicion,1)
-            console.log(array)
+
             //eliminar el storage
             localStorage.setItem("carrito", JSON.stringify(array))
+
             //recalcular el total
             calcularTotal(array)
         })
         
-        //SUMAR UNIDAD
+        //Sumar unidad de producto al carrito
         document.getElementById(`botonSumarUnidad${productoEnCarrito.id}`).addEventListener("click", ()=>{
-            
             productoEnCarrito.sumarUnidad()
             localStorage.setItem("carrito", JSON.stringify(array))
             cargarProductosCarrito(array)
         })
 
-        //ELIMINAR UNIDAD
+        //Restar unidad de producto al carrito
         document.getElementById(`botonEliminarUnidad${productoEnCarrito.id}`).addEventListener("click", ()=>{
             let eliminar = productoEnCarrito.restarUnidad()
             if(eliminar < 1){
@@ -176,10 +164,9 @@ function cargarProductosCarrito(array){
                 cardProducto.remove()
                 //eliminar del array de compras
                 
-                //hago un find para buscar en el array el objeto a eliminar
                 let productoEliminar = array.find((producto)=>producto.id == productoEnCarrito.id)
                 console.log(productoEliminar)
-                //indexOf para saber el indice en el array
+
                 let posicion = array.indexOf(productoEliminar)
                 console.log(posicion)
                 array.splice(posicion,1)
@@ -200,14 +187,10 @@ function cargarProductosCarrito(array){
 
 
 
-
-
 function calcularTotal(array){
     let total = array.reduce((acc, productoCarrito)=> acc + (productoCarrito.precio * productoCarrito.cantidad) ,0)
-
     total == 0 ? precioTotal.innerHTML = `No hay productos en el carrito` :
     precioTotal.innerHTML = `El total es <strong>$${total}</strong>`
-
     return total
 }
 
@@ -260,53 +243,14 @@ function finalizarCompra(){
 
 
 
-
-
-
-
-
-//FUNCION INGRESO DE PRODUCTOS A CATALOGO
-function cargarProducto(array){
-    
-    let inputMarca = document.querySelector("#marcaInput")
-    let inputModelo = document.querySelector("#modeloInput")
-    let inputGenero = document.querySelector("#generoInput")
-    let inputPrecio = document.querySelector("#precioInput")
-    let inputArticulo = document.querySelector("#articuloInput")
-    let inputSku = document.querySelector("#skuInput")
-
-    //*MOLDE: const producto1 = new Products(1,10033,"Gafas","Hombre","Ray Ban","Aviator Classic", 85000, "rayban_classic.jpg")
-
-    //Molde para nuevo objeto
-    const productoNuevo = new Products(array.length+1, inputSku.value, inputArticulo.value, inputGenero.value, inputMarca.value, inputModelo.value, inputPrecio.value,"producto_nuevo.jpg")
-    console.log(productoNuevo)
-    //Se suma al array stock
-    array.push(productoNuevo)
-    console.log(array)
-    //Se guarda en el localStorage
-    localStorage.setItem("stock", JSON.stringify(array))
-    mostrarCatalogo(array)
-
-    //resetear inputs 
-    inputMarca.value = ""
-    inputModelo.value = ""
-    inputGenero.value = ""
-    inputPrecio.value = ""
-    inputArticulo.value = ""
-    inputSku.value = ""
-}
-
-
-
-//FUNCION DE BUSQUEDA
+//Busqueda de productos
 function buscarInfo(buscado, array){
-    //Con el metodo .includes() podemos realizar busquedas con coindicencias parciales.
     let busquedaArray = array.filter(
         (producto) => producto.marca.toLowerCase().includes(buscado.toLowerCase()) || producto.modelo.toLowerCase().includes(buscado.toLowerCase())) 
 
-    //condicional sino encuentra ninguna coincidencia quiere decir que el array será devuelto vacio, por lo tanto su length será 0:
+    //condicional sino encuentra ninguna coincidencia
     if(busquedaArray.length == 0){
-        coincidencia.innerHTML = `<div class="alert alert-danger m-5" role="alert">No existe el producto ${buscado.toUpperCase()}</div>` //añadimos este mensaje en el html
+        coincidencia.innerHTML = `<div class="alert alert-danger m-5" role="alert">No existe el producto ${buscado.toUpperCase()}</div>`
         mostrarCatalogo(busquedaArray)
     }else{
         coincidencia.innerHTML = ""
@@ -316,20 +260,17 @@ function buscarInfo(buscado, array){
 
 
 
-//FUNCIONES DE FILTRADO (SELECT)
+//------------- Filtrado de procuctos (select) ----------------
 
 //Orden Menor precio
 function ordenarMenorMayor(array){
-    //copiamos array original // concat
     const menorMayor = [].concat(array)
-    //ordena de menor a mayor
     menorMayor.sort((a,b) => a.precio - b.precio)
     mostrarCatalogo(menorMayor)
 }
 
 //Orden Mayor precio
 function ordenarMayorMenor(arr){
-//ordenar de mayor a menor
 const mayorMenor = [].concat(arr)
 mayorMenor.sort((param1, param2)=>{
     return param2.precio - param1.precio
@@ -341,7 +282,6 @@ mostrarCatalogo(mayorMenor)
 function catalogoHombre(arr){
     let hombre = arr.filter((stock)=> stock.genero.toUpperCase() == "HOMBRE")
     if(hombre.length == 0){
-        console.log(`ERROR`)
     }else{
         mostrarCatalogo(hombre)
     }
@@ -361,7 +301,6 @@ function catalogoMujer(arr){
 function catalogoUnisex(arr){
     let unisex = arr.filter((stock)=> stock.genero.toUpperCase() == "UNISEX")
     if(unisex.length == 0){
-        console.log(`ERROR`)
     }else{
         mostrarCatalogo(unisex)
     }
@@ -381,8 +320,7 @@ buscador.addEventListener("input", ()=>{
 
 //Select (filtrado) 
 selectOrden.addEventListener("change", ()=>{
-    console.log(selectOrden.value) //confirmamos si está enlazado el select del html y el evento "change"
-
+    console.log(selectOrden.value)
     if(selectOrden.value == 1){ 
         ordenarMayorMenor(stock)
     }else if(selectOrden.value == 2){ 
@@ -394,9 +332,10 @@ selectOrden.addEventListener("change", ()=>{
     }else if(selectOrden.value == 5){
         catalogoUnisex(stock)
     }else{
-        mostrarCatalogo(stock) //si no se selecciona ningun select, solo se ejecutará la funcion mostrarCatalogo() 
+        mostrarCatalogo(stock) 
     }
 })
+
 
 botonCarrito.addEventListener("click", ()=>{
     cargarProductosCarrito(productosEnCarrito)
