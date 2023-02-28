@@ -37,3 +37,27 @@ La tienda cuenta con un login simple para la administración de la tienda. Solo 
 
 ## Licencia
 Este proyecto está bajo la licencia MIT.
+
+## Galería de imágenes
+
+* Index pagina. Modo light (defecto)
+[![Captura-de-pantalla-2023-02-28-a-la-s-16-55-17.png](https://i.postimg.cc/vmT81b9x/Captura-de-pantalla-2023-02-28-a-la-s-16-55-17.png)](https://postimg.cc/FftX8tTh)
+
+* Modo Oscuro
+[![Captura-de-pantalla-2023-02-28-a-la-s-16-55-48.png](https://i.postimg.cc/kGfht3WD/Captura-de-pantalla-2023-02-28-a-la-s-16-55-48.png)](https://postimg.cc/MffYhLP8)
+
+* Resumen productos agregados al carrito de compras junto con el total a pagar
+[![Captura-de-pantalla-2023-02-28-a-la-s-16-56-13.png](https://i.postimg.cc/tR5ccP8y/Captura-de-pantalla-2023-02-28-a-la-s-16-56-13.png)](https://postimg.cc/Yjv8G4py)
+
+* Alerta de confirmacion de compra junto con fecha del día de la compra
+[![Captura-de-pantalla-2023-02-28-a-la-s-16-56-56.png](https://i.postimg.cc/YCjTY9n7/Captura-de-pantalla-2023-02-28-a-la-s-16-56-56.png)](https://postimg.cc/tsQrHXGv)
+
+* Login Admin
+[![Captura-de-pantalla-2023-02-28-a-la-s-16-57-21.png](https://i.postimg.cc/d3qx1tkz/Captura-de-pantalla-2023-02-28-a-la-s-16-57-21.png)](https://postimg.cc/Q9ybYDqb)
+
+* Modal para agregar productos al catalogo de la tienda
+[![Captura-de-pantalla-2023-02-28-a-la-s-16-57-54.png](https://i.postimg.cc/B6fzrCqZ/Captura-de-pantalla-2023-02-28-a-la-s-16-57-54.png)](https://postimg.cc/HJ335XcF)
+
+
+
+
