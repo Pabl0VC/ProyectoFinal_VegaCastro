@@ -11,6 +11,7 @@ let botonCarrito = document.querySelector("#botonCarrito")
 let modalBodyCarrito = document.querySelector("#modal-bodyCarrito")
 let botonFinalizarCompra = document.querySelector("#botonFinalizarCompra")
 let precioTotal = document.querySelector("#precioTotal")
+let fecha = document.getElementById("fecha")
 
 
 
@@ -20,6 +21,13 @@ setTimeout(()=>{
     cargando.remove()
     mostrarCatalogo(stock)
 }, 1100)
+
+//Date
+const DateTime = luxon.DateTime
+const fechaHoy = DateTime.now()
+let fechaMostrar = fechaHoy.toLocaleString(DateTime.DATE_FULL)
+
+
 
 
 //----------------------------------------- CATALOGO DE PRODUCTOS -----------------------------------------
@@ -218,8 +226,8 @@ function finalizarCompra(){
         .then((result)=>{
             if(result.isConfirmed){
                 Swal.fire({
-                    title: 'Compra realizada',
-                    text:'Gracias por visitarnos',
+                    title: `Compra realizada`,
+                    text: `Su pedido será enviado hoy ${fechaMostrar}`,
                     icon: 'success',
                     confirmButtonColor: 'green',
                     })

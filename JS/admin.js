@@ -46,7 +46,7 @@ function login() {
     }
     })
 }
-// login()
+login()
 
 
 //------------- Mostrar Catalogo --------------
