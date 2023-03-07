@@ -11,7 +11,7 @@ let botonCarrito = document.querySelector("#botonCarrito")
 let modalBodyCarrito = document.querySelector("#modal-bodyCarrito")
 let botonFinalizarCompra = document.querySelector("#botonFinalizarCompra")
 let precioTotal = document.querySelector("#precioTotal")
-let fecha = document.getElementById("fecha")
+let fecha = document.querySelector("#fecha")
 
 
 
@@ -43,7 +43,7 @@ function mostrarCatalogo(array){
                     <h3 class="card-title cardText">${producto.marca.toUpperCase()}</h3>
                     <p class="cardText">${producto.genero.toUpperCase()} </p>
                     <p class="cardText">${producto.articulo.toUpperCase()} ${producto.modelo.toUpperCase()}</p>
-                    <p class="cardPrecio">${producto.precio.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}</p>
+                    <p class="cardPrecio">${producto.precio.toLocaleString("es-CL", { style: "currency", currency: "CLP" })} CLP</p>
                     <p class="cardSku">SKU ${producto.sku}</p>
                     <button id="agregarBtn${producto.id}" class="button-48" role="button"><span class="text">Agregar al carrito</span></button>
                 </div>
@@ -91,11 +91,11 @@ function agregarAlCarrito(producto){
         //sweet alert
         Swal.fire({
             title: "Producto agregado al carrito",
-            text: `${producto.articulo} ${producto.marca} ${producto.modelo} ha sido agregado exitosamente al carrito`,
+            text: `"${producto.articulo} ${producto.marca} ${producto.modelo}" ha sido agregado exitosamente al carrito`,
             icon: "info",
             confirmButtonText: 'Entendido',
             confirmButtonColor: "green",
-            timer: 5000,
+            timer: 3000,
             imageUrl: `img/productos/${producto.imagen}`,
             imageHeight: 200
         })
@@ -215,7 +215,7 @@ function finalizarCompra(){
     }
     else{
         Swal.fire({
-            title: `Está seguro de realizar la compra por <strong>${finalizarTotal.toLocaleString("es-CL", { style: "currency", currency: "CLP" })} CLP</strong> `,
+            title: `Está seguro de realizar la compra por ${finalizarTotal.toLocaleString("es-CL", { style: "currency", currency: "CLP" })} CLP`,
             icon: 'info',
             showCancelButton: true,
             confirmButtonText: 'Sí, seguro',

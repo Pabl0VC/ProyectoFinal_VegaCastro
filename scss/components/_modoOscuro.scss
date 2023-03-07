@@ -1,0 +1,26 @@
+@import "../base/variables";
+
+/* Modo Oscuro */
+.darkMode{
+    background-color: $bg-dark;
+    color:$text-color-dark ;
+}
+
+.navborder{
+    border-bottom: solid 1px #fff9ce;
+}
+
+.modos{
+    display: flex;
+    justify-content: end;
+}
+.dark{
+    margin-right: 30px;
+}
+
+.darkMode .card{
+    color: black;
+}
+.darkMode .modal{
+    color: black;
+}

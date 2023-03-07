@@ -1,5 +1,5 @@
 # Proyecto tienda virtual
-Este es un proyecto que fue desarrollado como proyecto final del curso de JavaScript de Coderhouse. Consta de una tienda virtual que permite la compra de productos de diferentes categorías (masculino, femenino y unisex). El proyecto utiliza diferentes tecnologías y herramientas como funciones, arrays, objetos, funciones de orden superior, DOM, eventos, storage, JSON, operadores avanzados, librerías como SweetAlert y Luxon, asincronia y promesas, fetch, entre otros.
+Este es un proyecto que fue desarrollado como proyecto final del curso de JavaScript de Coderhouse. Consta de una tienda virtual que permite la compra de productos de diferentes categorías (masculino, femenino y unisex). El proyecto utiliza diferentes tecnologías y herramientas como Sass, JavaScript (funciones, arrays, objetos, funciones de orden superior, DOM, eventos, storage, JSON, operadores avanzados), librerías como SweetAlert y Luxon, asincronia y promesas, fetch, entre otros.
 
 ## Funcionalidades
 
@@ -22,6 +22,7 @@ La tienda cuenta con un login simple para la administración de la tienda. Solo 
 ## Tecnologías Utilizadas
 * JavaScript: utilizado para programar la lógica del proyecto.
 * HTML y CSS: para la estructura y diseño de la tienda virtual.
+* Sass: utilizado para crear variables y componentes que permiten reducir la cantidad de código CSS necesario y hacerlo más fácil de mantener.
 * SweetAlert: muestra alertas más atractivas y personalizadas.
 * Luxon: muestra fecha actualizada para verificar dia de la compra
 * JSON: se utiliza para almacenar y manejar los datos de los productos.

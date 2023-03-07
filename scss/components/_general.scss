@@ -1,0 +1,17 @@
+@import "../base/variables";
+body{
+    background-color:$bg-general;
+    font-family:$font-general;
+}
+.navegador{
+    justify-content:space-between;
+}
+/* Buscador */
+.barraBuscador{
+    width: 250px;
+    font-family:$font-general;
+}
+
+.navegador{
+    justify-content:space-between;
+}
